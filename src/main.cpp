@@ -5,6 +5,7 @@
 using namespace std;
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
+void processInput(GLFWwindow *wimdow);
 
 int main(void)
 {
@@ -49,8 +50,11 @@ int main(void)
     while (!glfwWindowShouldClose(window))
     {
         // Clear the screen
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
+
+        // Process input
+        processInput(window);
 
         // Swap buffers and poll events
         glfwSwapBuffers(window);
@@ -66,4 +70,13 @@ int main(void)
 void framebuffer_size_callback(GLFWwindow *window, int width, int height)
 {
     glViewport(0, 0, width, height);
+}
+
+// Process input
+void processInput(GLFWwindow *window)
+{
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    {
+        glfwSetWindowShouldClose(window, true);
+    }
 }
